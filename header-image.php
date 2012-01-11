@@ -86,9 +86,12 @@ class HeaderImage {
      * Helper to simplify access to header image value
      */
     function generate_css() {
-      $hi = get_option( 'header_image' );
-      $img_css = get_option( 'header_image_element' );
-      $img_src = wp_get_attachment_url( $hi );
+      $img_css = get_option( 'header_image_element', null );
+      // Return nothing if no CSS element was set
+      if ( !$img_css )
+        return;
+
+      $img_src = wp_get_attachment_url( get_option( 'header_image', null ) );
       printf(
           "<style type=\"text/css\">%s{ background: url('%s') no-repeat 0 0 !important; }</style>",
           $img_css,

@@ -11,6 +11,8 @@
         )
     );
 ?>
+
+<?php if ( count( $images ) > 0 ): ?>
 <select name="header_image">
     <?php foreach( $images as $img ): ?>
         <option value="<?php echo $img->ID ?>" <?php selected($img->ID, $selected); ?>>
@@ -18,3 +20,6 @@
         </option>
     <?php endforeach; ?>
 </select>
+<?php else: ?>
+<p><?php _e( 'Sorry, no images uploaded yet!' ) ?></p>
+<?php endif; ?>
